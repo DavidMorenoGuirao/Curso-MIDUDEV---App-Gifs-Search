@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import ListOfGifs from './components/ListOfGifs';
-import { Link, Route } from "wouter";
+import { Link, Route, useLocation } from "wouter";
 
 
-export default function App() {   
+
+export default function App() { 
+  
+  const[keyword, setKeyword] = useState('');
+  const [path, pushLocation] = useLocation();
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    pushLocation(`/gif/${keyword}`);
+    // console.log(keyword);
+    
+  }
+
+  const handleChange = (e) => {
+    setKeyword(e.target.value);
+  }
+
+
   return (
     <div className="App">
       <section className="App-content">
         <h1>App</h1>
-        //QUEDA PENDIENTE HACER QUE EL LINK DE LA RUTA DE LAS GIFS SE ACTIVE SOLO CUANDO SE HAGA CLICK EN EL BOTON DE BUSQUEDA
-        <input type="text" placeholder="Search for a gif" />
+        <form onSubmit={handleSubmit}>
+          <input onChange={handleChange} type="text" value={keyword} placeholder="Search for a gif..." />  
+          <button>Search</button>
+        </form>
+        
+        
         <br/>
-        <button>Search</button>
+        
         <br/>
         <Link to='/gif/panda'>Gifs de pandas</Link>
         <Link to='/gif/coches'>Gifs de coches</Link>
@@ -21,7 +43,10 @@ export default function App() {
       <Route 
         component={ListOfGifs}
         path="/gif/:keyword"
-      />     
+      />
+      {/* <Route
+        component={Detail}
+        path="/gif/:id"  />    */}
                
       </section>
     </div>

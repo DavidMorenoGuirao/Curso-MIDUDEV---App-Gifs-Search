@@ -1,6 +1,7 @@
 import React, { useEffect , useState } from 'react';
 import Gif from "./Gif";
 import getGifs from "../services/getGifs";
+import './Gif.css';
 
 export default function ListOfGifs ({ params }) {
     const { keyword } = params;
@@ -18,7 +19,7 @@ export default function ListOfGifs ({ params }) {
 
     if(loading) return <i>Loading... 🎯</i>
 
-    return <div>
+    return <div className='ListOfGifs'>
         {
             gifs.map(({id, title, url}) =>
             <Gif

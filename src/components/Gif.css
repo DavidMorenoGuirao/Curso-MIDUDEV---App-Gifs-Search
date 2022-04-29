@@ -1,24 +1,44 @@
+:root{
+    --results-columns: 1;
+}
 .Gif{
-    border : 1px solid #eee;
-    border-radius: 6px;
-    color: #eee;
-    display: flex;
-    flex-direction: column;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    color: #eee;    
     text-decoration: none;
-    width: 100%;
-    margin: 16px;
+    display: inline-block;
+    /* max-width: 12rem; */
+    /* width: 100%; */
+    
+    
 }
 
 .Gif h4{
     margin: 0;
     padding: 0;
-    font-size: 24px;
+    font-size: 18px;
     
 }
-.Gif img{
-    object-fit: contain;
-}
+
 
 i{
     font-size: 32px;
+}
+
+.ListOfGifs{
+    column-count: var(--results-columns);
+    column-gap: .5rem;  
+}
+
+@media (min-width: 800px){
+    :root{
+        --results-columns: 2;        
+    }
+}
+
+@media (min-width: 1024px){
+    :root{
+        --results-columns: 3;        
+    }
 }
